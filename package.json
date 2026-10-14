@@ -2,7 +2,10 @@
   "name": "detailflow-site",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "start": "node server.js"
+  "scripts": {"start": "node server.js"},
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "exceljs": "^4.4.0",
+    "pdfkit": "^0.17.2"
   }
 }
