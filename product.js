@@ -89,9 +89,59 @@ function pdf(){
     doc.moveDown().fontSize(15).text('License and disclaimer').fontSize(9.5).fillColor('#444').text('Licensed for one business owner/operator. No resale, redistribution, white-labeling or repackaging for sale. Not legal, tax, accounting or financial advice.',{lineGap:4});doc.end();
   });
 }
+async function starterWorkbook(){
+  const wb=new ExcelJS.Workbook(); wb.creator='DetailFlow by Dos Culturas Wander LLC';
+  const s=wb.addWorksheet('Start Here');
+  s.addRows([
+    ['DetailFlow Starter Pack','Pricing + Quote System for Solo Mobile Detailers'],
+    ['1. Pricing','Replace sample values with your labor, supply, travel and overhead assumptions.'],
+    ['2. Quote','Use the Quote Builder to calculate a customer-ready total and deposit.'],
+    ['3. Follow Up','Copy the scripts and personalize the bracketed fields before sending.'],
+    ['4. Content','Use the 30-Day Content sheet to stay visible while you build bookings.'],
+    ['Upgrade','When you need bookings, CRM and a revenue dashboard, move to the full DetailFlow Toolkit.'],
+    ['Important','Organizational/planning tool only. Not legal, tax, accounting or financial advice.']
+  ]); style(s,[30,82]);
+
+  const p=wb.addWorksheet('Pricing Calculator');
+  p.addRows([
+    ['Input','Value','Notes'],['Labor hours',3,'Estimated hands-on time'],['Target hourly pay',45,'Your target hourly compensation'],
+    ['Supplies cost',18,'Chemicals, towels, disposables'],['Travel cost',10,'Fuel/tolls per job'],['Overhead allocation',20,'Insurance, software, equipment allocation'],
+    ['Target profit margin',0.35,'0.35 = 35%'],['Labor cost',{formula:'B2*B3'},'Hours x hourly pay'],['Total job cost',{formula:'SUM(B4:B6)+B8'},'All direct + allocated costs'],
+    ['Recommended price',{formula:'IF(B7>=1,B9,B9/(1-B7))'},'Price for target gross margin'],['Expected gross profit',{formula:'B10-B9'},'Price - cost']
+  ]); style(p,[28,18,50]); p.getColumn(2).numFmt='$#,##0.00'; p.getCell('B7').numFmt='0%';
+
+  const q=wb.addWorksheet('Quote Builder');
+  q.addRows([['Field','Value'],['Customer name','Sample Customer'],['Vehicle','2022 SUV'],['Core service price',180],['Add-ons',40],['Discount',0],['Tax rate',0],['Subtotal',{formula:'B4+B5-B6'}],['Tax',{formula:'B8*B7'}],['Total quote',{formula:'B8+B9'}],['Deposit %',0.25],['Deposit due',{formula:'B10*B11'}],['Balance after deposit',{formula:'B10-B12'}]]);
+  style(q,[30,34]); ['B4','B5','B6','B8','B9','B10','B12','B13'].forEach(x=>q.getCell(x).numFmt='$#,##0.00'); ['B7','B11'].forEach(x=>q.getCell(x).numFmt='0%');
+
+  const sc=wb.addWorksheet('Follow-Up Scripts');
+  sc.addRows([
+    ['Use Case','Ready-to-send message'],
+    ['New lead','Thanks for reaching out. Send me your vehicle year/model, location, and a few photos if possible. I can then recommend the right service and price.'],
+    ['Quote follow-up','Hey [Name], just checking whether you had any questions about the quote. I still have [day/time] available if you want me to hold it.'],
+    ['Booking reminder','Quick reminder for your detail tomorrow at [time]. Please make sure I can access the vehicle and personal items are removed.'],
+    ['Review request','Thanks again for trusting me with your vehicle. If you were happy with the result, a quick review would help my small business a lot: [link]'],
+    ['Reactivation','Hey [Name], it has been a little while since your last detail. Want me to send you the next available maintenance slots?']
+  ]); style(sc,[24,95]);
+
+  const ct=wb.addWorksheet('30-Day Content'); ct.addRow(['Day','Format','Hook','What to Show','CTA']);
+  for(let i=1;i<=30;i++) ct.addRow([i,formats[(i-1)%formats.length],hooks[(i-1)%hooks.length],shots[(i-1)%shots.length],ctas[(i-1)%ctas.length]]);
+  style(ct,[8,13,55,42,30]);
+  return Buffer.from(await wb.xlsx.writeBuffer());
+}
+
+async function streamStarterZip(res){
+  const xlsx=await starterWorkbook();
+  res.writeHead(200,{'Content-Type':'application/zip','Content-Disposition':'attachment; filename="DetailFlow_Starter_Pack.zip"','Cache-Control':'no-store'});
+  const z=archiver('zip',{zlib:{level:9}}); z.pipe(res);
+  z.append(xlsx,{name:'DetailFlow_Starter_Pack.xlsx'});
+  z.append('DETAILFLOW STARTER PACK\n\nUse Pricing Calculator first, then Quote Builder. Personalize Follow-Up Scripts before sending. Use the 30-Day Content sheet as a prompt bank.\n\nLicense: one business owner/operator. No resale or redistribution.\n',{name:'START_HERE.txt'});
+  z.finalize();
+}
+
 async function streamZip(res,sampleCsv){
   const xlsx=await workbook(),guide=await pdf();
   res.writeHead(200,{'Content-Type':'application/zip','Content-Disposition':'attachment; filename="DetailFlow_Product_Download.zip"','Cache-Control':'no-store'});
   const z=archiver('zip',{zlib:{level:9}});z.pipe(res);z.append(xlsx,{name:'DetailFlow_Mobile_Detailing_Business_Toolkit.xlsx'});z.append(guide,{name:'DetailFlow_Quickstart_Playbook.pdf'});z.append(sampleCsv,{name:'DetailFlow_Free_Sample.csv'});z.append('DetailFlow by Dos Culturas Wander LLC\nLicense: one business owner/operator. No resale or redistribution.\n',{name:'README.txt'});z.finalize();
 }
-module.exports={streamZip};
+module.exports={streamZip,streamStarterZip};
