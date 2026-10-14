@@ -3,7 +3,7 @@ const {URL}=require('url');
 const {streamZip}=require('./product');
 
 const PORT=process.env.PORT||10000;
-const CHECKOUT_URL=process.env.CHECKOUT_URL||'https://buy.stripe.com/test_cNi6ozavS3lma7ielfgjC00';
+const CHECKOUT_URL='https://buy.stripe.com/7sYfZ9cGM54j7t77OR9bO00';
 const DOWNLOAD_TOKEN=process.env.DOWNLOAD_TOKEN||'';
 const SAMPLE_CSV=`Format,Hook,What to Show,CTA
 Reel,"This is why a quick wash isn't the same as a detail.",50/50 before and after panel,DM for a quote
