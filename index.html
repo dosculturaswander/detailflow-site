@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeeae3">
+  <meta name="description" content="Dos Culturas Wander — cinematic films, photography, and creator-led content for hotels, destinations, and brands.">
+  <title>Dos Culturas Wander — Cinematic Portfolio | Your Footage Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#f5f3ed;--paper2:#eeece5;--cream:#fcfaf5;--ink:#202626;--muted:#69706b;--line:#d9d8d0;--olive:#858b7d;--blue:#576c6b;--dark:#192423;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--max:1336px;--gutter:clamp(22px,5.2vw,92px)}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:78px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body.modal-open{overflow:hidden}
+    ::selection{background:#b9c7bf;color:#132120}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[contenteditable]:focus-visible{outline:2px solid #88bcb1;outline-offset:4px}
+    img,video{display:block;max-width:100%}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .container{width:min(var(--max),calc(100% - var(--gutter)*2));margin-inline:auto}
+    .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.055em}
+    .serif em{font-weight:400}
+    .eyebrow{display:inline-block;font:700 10px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.2em}
+    .muted{color:var(--muted)}
+    .nav{position:fixed;z-index:100;top:0;left:0;right:0;padding:0 var(--gutter);color:#fafbf7;border-bottom:1px solid rgba(255,255,255,.25);transition:color .4s,background .4s,border-color .4s,box-shadow .4s}
+    .nav.is-scrolled,.nav.menu-open{background:rgba(248,247,241,.94);color:var(--ink);border-color:rgba(0,0,0,.08);backdrop-filter:blur(18px);box-shadow:0 4px 30px rgba(10,20,20,.035)}
+    .nav-inner{max-width:var(--max);margin:auto;height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:13px;min-width:210px}
+    .brand-signature{font:italic 37px/1 var(--serif);letter-spacing:-.10em}
+    .brand-detail{font-size:9px;line-height:1.55;letter-spacing:.17em;font-weight:700}
+    .nav-items{display:flex;align-items:center;gap:clamp(17px,2.5vw,39px)}
+    .nav-items a{font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:700;position:relative}
+    .nav-items a::after{content:'';position:absolute;bottom:-7px;left:0;right:100%;height:1px;background:currentColor;transition:right .26s}
+    .nav-items a:hover::after{right:0}
+    .nav-cta{display:flex;align-items:center;gap:19px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border:1px solid currentColor;padding:13px 17px;transition:background .25s,color .25s}
+    .nav-cta:hover{background:#f7f7f1;color:#18211f}
+    .nav.is-scrolled .nav-cta:hover{background:var(--dark);color:white}
+    .mobile-toggle{display:none;border:0;background:none;color:inherit;padding:8px;font-size:24px}
+    .top-progress{position:fixed;left:0;top:0;right:0;height:2px;z-index:120;pointer-events:none}
+    .top-progress i{display:block;width:100%;height:100%;background:#d0dfcd;transform:scaleX(0);transform-origin:left;will-change:transform}
+
+    /* Full-canvas opening film, intentionally unfilled until real DCW footage is selected. */
+    .hero{position:relative;height:100svh;min-height:680px;color:#fff;overflow:hidden;background:#374943;isolation:isolate}
+    .hero-media{position:absolute;inset:0;overflow:hidden;z-index:-3;--hero-scale:1.05;transform:scale(var(--hero-scale));transition:transform .1s linear}
+    .hero-art{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 72% 48%,rgba(217,198,162,.48) 0%,rgba(116,143,132,.28) 29%,transparent 51%),linear-gradient(126deg,#233b3b 4%,#576f66 36%,#a39979 63%,#364c47 100%)}
+    .hero-art::before{content:'';position:absolute;inset:7% 8% -10% auto;width:45%;border:26px solid rgba(241,231,209,.2);border-radius:48% 48% 0 0;box-shadow:-44px 14px 80px rgba(12,30,27,.35),inset 0 0 0 3px rgba(255,246,213,.09),44px 0 100px rgba(14,39,32,.12);transform:rotate(-3deg)}
+    .hero-art::after{content:'';position:absolute;inset:26% auto -12% 50%;width:1px;background:rgba(255,240,213,.35);box-shadow:230px 0 rgba(250,239,213,.19),-160px 0 rgba(255,242,212,.12)}
+    .hero-haze{position:absolute;inset:0;background:radial-gradient(ellipse at 35% 65%,rgba(14,28,27,.12),transparent 45%),linear-gradient(90deg,rgba(3,20,20,.67) 0%,rgba(7,23,25,.43) 46%,rgba(10,26,26,.12) 100%),linear-gradient(0deg,rgba(4,20,22,.62),transparent 41%,rgba(8,22,19,.2));z-index:1;pointer-events:none}
+    .hero-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0;transition:opacity .65s}
+    .hero-media.has-media .hero-film{opacity:1}
+    .hero-noise{position:absolute;inset:0;opacity:.19;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.64' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.33'/%3E%3C/svg%3E");z-index:2;pointer-events:none}
+    .hero-inner{height:100%;max-width:var(--max);margin:auto;width:calc(100% - var(--gutter)*2);display:flex;flex-direction:column;justify-content:flex-end;position:relative;z-index:4;padding:152px 0 100px}
+    .hero-topline{position:absolute;left:0;top:135px;display:flex;align-items:center;gap:17px;color:#e5ece6}
+    .hero-topline::before{content:'';width:33px;height:1px;background:currentColor;opacity:.74}
+    .hero h1{font-size:clamp(65px,8.3vw,148px);line-height:1.02;max-width:1050px;margin:0;font-weight:400;text-wrap:balance;transform:translateY(calc(var(--hero-scroll,0)*-.07px));will-change:transform}
+    .hero h1 em{color:#e9e7d9}
+    .hero-below{display:flex;justify-content:space-between;align-items:end;gap:38px;margin-top:37px;border-top:1px solid rgba(255,255,255,.42);padding-top:27px}
+    .hero-below p{font-size:14px;line-height:1.8;color:#ebeee8;max-width:385px;margin:0}
+    .hero-actions{display:flex;align-items:center;gap:23px;flex-wrap:wrap}
+    .light-button,.dark-button,.line-button{display:inline-flex;gap:27px;align-items:center;justify-content:space-between;font-weight:700;font-size:10px;letter-spacing:.15em;text-transform:uppercase;min-height:51px;padding:0 20px;transition:transform .3s,background .3s,color .3s}
+    .light-button{background:#f6f3e9;color:#192422}
+    .light-button:hover{background:#dfebe6;transform:translateY(-2px)}
+    .dark-button{background:var(--dark);color:white;border:1px solid var(--dark)}
+    .dark-button:hover{background:#36504a;transform:translateY(-2px)}
+    .line-button{background:transparent;border:1px solid rgba(255,255,255,.65);color:white}
+    .line-button:hover{background:rgba(255,255,255,.14)}
+    .hero-aside{position:absolute;z-index:5;right:var(--gutter);top:47%;transform:translateY(-50%);display:flex;gap:13px;align-items:center;writing-mode:vertical-rl;font-size:9px;letter-spacing:.22em;text-transform:uppercase;opacity:.9}
+    .hero-aside::after{content:'';height:59px;width:1px;background:rgba(255,255,255,.7)}
+    .scrollcue{position:absolute;bottom:28px;left:50%;z-index:4;display:flex;flex-direction:column;gap:12px;align-items:center;transform:translateX(-50%);font-size:9px;text-transform:uppercase;letter-spacing:.22em;color:#f3f4ef}
+    .scrollcue .line{height:31px;width:1px;overflow:hidden;background:rgba(255,255,255,.28);position:relative}
+    .scrollcue .line::after{content:'';position:absolute;top:-100%;width:1px;height:100%;background:#fff;animation:scrollline 2.3s ease-in-out infinite}
+    @keyframes scrollline{0%{transform:translateY(0)}60%,100%{transform:translateY(65px)}}
+    .hero-hint{position:absolute;z-index:5;right:var(--gutter);bottom:37px;max-width:180px;text-align:right;color:rgba(255,255,255,.72);font-size:9px;letter-spacing:.13em;text-transform:uppercase;line-height:1.7}
+    .replace-hero{display:none;position:absolute;z-index:35;left:50%;top:45%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.76);background:#f7f5ee;color:#25302a;min-width:216px;padding:17px 21px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 42px rgba(0,0,0,.22)}
+    .editor-mode .replace-hero{display:block}
+    .hero-media.has-media~.hero-hint{display:none}
+
+    .ticker{background:var(--paper2);border-bottom:1px solid var(--line);overflow:hidden}
+    .ticker-inner{display:flex;align-items:center;justify-content:space-between;gap:25px;min-height:76px}
+    .ticker-tag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;flex:0 0 auto}
+    .ticker-words{display:flex;gap:30px;align-items:center;justify-content:space-around;flex:1;color:#67736d;font-family:var(--serif);font-size:clamp(18px,2vw,26px);font-style:italic;white-space:nowrap}
+    .ticker-words b{font-family:var(--sans);font-size:12px;font-style:normal;color:#9ca49b;font-weight:400}
+
+    .section{padding:clamp(84px,11vw,156px) 0}
+    .head-row{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:50px}
+    .section-title{font-size:clamp(52px,6.3vw,99px);line-height:1.07;margin:18px 0 0}
+    .head-row .intro{max-width:340px;color:#59615d;font-size:14px;line-height:1.85;margin:0 0 9px}
+    .number-label{display:inline-flex;align-items:center;gap:15px}
+    .number-label::before{content:'';width:35px;height:1px;background:#9da49a}
+    .section-rule{height:1px;background:var(--line);border:0}
+
+    /* Featured collaboration is intentionally given a near-theater-sized screen. */
+    .featured{padding:122px 0 130px;background:var(--paper)}
+    .featured-header{display:grid;grid-template-columns:1.15fr .75fr;gap:45px;margin-bottom:55px;align-items:end}
+    .featured h2{font-size:clamp(57px,7.1vw,112px);line-height:1.04;margin:18px 0 0}
+    .featured .feature-note{max-width:400px;justify-self:end;color:#5d6760;line-height:1.9;font-size:15px}
+    .stage-wrap{position:relative}
+    .feature-screen{width:100%;height:clamp(385px,53vw,730px);position:relative}
+    .stage-caption{display:flex;justify-content:space-between;align-items:start;gap:20px;padding:21px 0 0;border-top:1px solid var(--line);margin-top:22px}
+    .stage-caption h3{font-size:19px;font-weight:500;letter-spacing:-.03em;margin:0}
+    .stage-caption p{max-width:390px;color:var(--muted);font-size:12px;line-height:1.7;margin:0}
+    .chapter-index{font-size:10px;color:#818a80;letter-spacing:.14em;text-transform:uppercase}
+    .feature-outline{position:absolute;right:-17px;bottom:40px;z-index:-1;width:44%;height:55%;border:1px solid #c5cfc7}
+
+    /* Media slots. Their artwork is only a placeholder, never a claimed collaboration. */
+    .media-slot{position:relative;isolation:isolate;overflow:hidden;background:#abb0a5;min-height:170px;cursor:default}
+    .media-slot::before{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(140deg,#596c63,#b0b9a8 48%,#7d9386)}
+    .media-slot.tint-blue::before{background:linear-gradient(140deg,#3e5a63,#a3b8af 47%,#73868f)}
+    .media-slot.tint-sand::before{background:linear-gradient(131deg,#928d7c,#e0d6c4 48%,#8b968b)}
+    .media-slot.tint-ink::before{background:linear-gradient(138deg,#263c3c,#7f9a91 53%,#b1b29d)}
+    .media-slot.tint-rose::before{background:linear-gradient(140deg,#918579,#d4c0b4 50%,#777f7a)}
+    .media-slot.tint-night::before{background:linear-gradient(150deg,#253634,#647578 55%,#212c34)}
+    .media-architecture{position:absolute;z-index:-1;inset:15% 24% -14% 24%;border:clamp(9px,1.6vw,25px) solid rgba(254,248,230,.32);border-radius:48% 48% 0 0;filter:drop-shadow(21px 8px 16px rgba(18,36,36,.08));transform:skewX(-5deg)}
+    .media-architecture::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.24)}
+    .media-slot::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,30,28,.57),transparent 52%,rgba(7,25,25,.04));z-index:2;pointer-events:none}
+    .media-slot img,.media-slot video{position:absolute;width:100%;height:100%;object-fit:cover;inset:0;z-index:1}
+    .media-slot.has-media .media-architecture{display:none}
+    .slot-top{position:absolute;left:21px;top:20px;z-index:4;display:flex;justify-content:space-between;align-items:start;gap:14px;right:21px;color:#fff}
+    .slot-top span{border:1px solid rgba(255,255,255,.63);padding:9px 11px;backdrop-filter:blur(5px);font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+    .slot-bottom{position:absolute;z-index:4;color:white;left:clamp(18px,2.7vw,42px);right:clamp(18px,2.7vw,42px);bottom:clamp(18px,2.5vw,35px)}
+    .slot-bottom .eyebrow{font-size:9px;color:#e8ede6}
+    .slot-bottom .slot-title{display:block;font-family:var(--serif);font-size:clamp(24px,2.7vw,45px);letter-spacing:-.045em;line-height:1.22;margin-top:9px}
+    .media-play{position:absolute;z-index:6;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.82);border-radius:50%;background:rgba(23,39,36,.15);color:#fff;width:70px;height:70px;display:grid;place-items:center;backdrop-filter:blur(7px);transition:background .3s,transform .3s}
+    .media-play:hover{background:rgba(255,255,255,.26);transform:translate(-50%,-50%) scale(1.08)}
+    .media-play svg{width:19px;height:19px;transform:translateX(2px);fill:currentColor}
+    .media-slot:not(.has-media) .media-play{opacity:.75}
+    .media-card:hover .media-slot:not(.has-media)::before{filter:brightness(.95)}
+    .media-card .media-slot img,.media-card .media-slot video{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+    .media-card:hover .media-slot img,.media-card:hover .media-slot video{transform:scale(1.035)}
+    .media-slot.has-media:not(.slot-hero) .slot-top .placeholder-marker{display:none}
+    .media-slot.has-media:not(.slot-hero) .slot-bottom{opacity:.95}
+    .card-foot{display:flex;justify-content:space-between;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding:16px 0 21px}
+    .card-foot h3{margin:0;font-size:15px;font-weight:600;letter-spacing:-.025em}
+    .card-foot span{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#77827b}
+
+    .about{background:#e9e9e1;padding:130px 0}
+    .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12%;align-items:center}
+    .about h2{font-size:clamp(58px,6.6vw,106px);line-height:1.1;margin:21px 0 28px}
+    .about h2 em{color:#7a887c}
+    .about p{font-size:15px;line-height:1.95;color:#53625a;max-width:545px}
+    .about .lede{font-size:19px;line-height:1.65;color:#283832}
+    .about-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;border-top:1px solid #cdd1c8;margin-top:43px;padding-top:18px}
+    .about-meta div{font-size:11px;line-height:1.6;color:#65716a}
+    .about-meta strong{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#263b33;margin-bottom:6px}
+    .about-image{position:relative;height:630px}
+    .about-image .media-slot{position:absolute;inset:0 0 60px 5%;height:auto}
+    .about-image .vertical-tag{position:absolute;z-index:4;bottom:11px;left:0;writing-mode:vertical-rl;transform:rotate(180deg);font-size:9px;letter-spacing:.2em;text-transform:uppercase}
+    .about-image .caption-box{position:absolute;z-index:6;right:-20px;bottom:1px;background:var(--cream);padding:23px 29px;max-width:280px;box-shadow:0 20px 60px rgba(27,40,36,.08)}
+    .caption-box span{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#65726c}
+    .caption-box p{font-family:var(--serif);color:var(--dark);font-size:20px;line-height:1.36;margin:13px 0 0}
+
+    .film-section{background:var(--paper);padding-top:138px}
+    .film-grid{display:grid;grid-template-columns:1.17fr 1fr 1fr;gap:19px;align-items:start}
+    .film-grid article:first-child .media-slot{height:510px}
+    .film-grid article:nth-child(2),.film-grid article:nth-child(3){margin-top:96px}
+    .film-grid article:nth-child(2) .media-slot,.film-grid article:nth-child(3) .media-slot{height:410px}
+    .film-grid .slot-bottom .slot-title{font-size:clamp(20px,2vw,30px)}
+    .film-grid .media-play{width:57px;height:57px}
+
+    .ugc-section{background:#e5e9e4;padding:112px 0 135px}
+    .ugc-section .head-row{margin-bottom:50px}
+    .ugc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+    .ugc-grid .media-slot{height:min(38vw,480px)}
+    .ugc-grid article:nth-child(even){margin-top:46px}
+    .ugc-grid .slot-bottom{left:17px;right:17px;bottom:18px}
+    .ugc-grid .slot-bottom .slot-title{font-size:clamp(17px,1.8vw,26px)}
+    .ugc-grid .media-play{width:52px;height:52px}
+    .ugc-grid .media-play svg{width:15px}
+    .ugc-grid .card-foot{border-color:#ccd6cc}
+
+    .photo-section{padding:125px 0 143px}
+    .photo-head{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end}
+    .photo-head .intro{max-width:410px;justify-self:end;color:#6a746d;font-size:14px;line-height:1.8}
+    .photo-grid{display:grid;grid-template-columns:1.1fr .82fr 1fr;grid-template-rows:330px 240px 240px;gap:15px;margin-top:47px}
+    .photo-grid .media-slot{height:100%}
+    .photo-grid .media-slot:nth-child(1){grid-column:1;grid-row:1/3}
+    .photo-grid .media-slot:nth-child(2){grid-column:2;grid-row:1}
+    .photo-grid .media-slot:nth-child(3){grid-column:3;grid-row:1/3}
+    .photo-grid .media-slot:nth-child(4){grid-column:2;grid-row:2}
+    .photo-grid .media-slot:nth-child(5){grid-column:1;grid-row:3}
+    .photo-grid .media-slot:nth-child(6){grid-column:2/4;grid-row:3}
+    .photo-grid .slot-bottom .slot-title{font-size:clamp(18px,1.8vw,27px)}
+    .photo-grid .slot-top span{font-size:8px;padding:7px 9px}
+
+    .services{background:#eeece5;padding:130px 0}
+    .services-head{display:grid;grid-template-columns:1.15fr .85fr;gap:55px;margin-bottom:55px;align-items:end}
+    .services-head p{line-height:1.9;color:#617067;max-width:430px;justify-self:end;font-size:15px}
+    .service-list{border-top:1px solid #cfd2c9}
+    .service-item{display:grid;grid-template-columns:55px 1fr 1fr 34px;align-items:center;gap:30px;border-bottom:1px solid #cfd2c9;padding:32px 7px;transition:padding .35s,background .3s}
+    .service-item:hover{background:rgba(255,255,255,.38);padding-left:21px}
+    .service-item .num{color:#89958a;font-size:11px;letter-spacing:.15em}
+    .service-item h3{font-family:var(--serif);font-weight:400;letter-spacing:-.04em;font-size:clamp(26px,3.15vw,45px);margin:0}
+    .service-item p{max-width:480px;color:#63716a;font-size:12px;line-height:1.75;margin:0}
+    .service-item .arrow{font-size:25px;color:#89988d;font-weight:300;transition:transform .3s}
+    .service-item:hover .arrow{transform:translate(4px,-4px)}
+    .service-foot{display:flex;align-items:center;justify-content:space-between;gap:25px;margin-top:32px}
+    .service-foot p{font-size:12px;color:#66736b;line-height:1.7}
+
+    .reviews{padding:126px 0 139px;background:var(--paper)}
+    .reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .review{border:1px solid #deded5;padding:48px;min-height:330px;display:flex;flex-direction:column;justify-content:space-between}
+    .review .quote{font-family:var(--serif);font-size:71px;color:#8d9b8e;line-height:.8}
+    .review blockquote{margin:20px 0 40px;font-family:var(--serif);font-size:clamp(22px,2.5vw,34px);line-height:1.4;letter-spacing:-.04em}
+    .review footer{border-top:1px solid var(--line);padding-top:17px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#707c72;display:flex;justify-content:space-between;gap:18px}
+
+    .contact{background:#1b2927;color:#f1f0e9;padding:130px 0 100px}
+    .contact-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:85px}
+    .contact-head h2{font-size:clamp(60px,8vw,121px);line-height:1.07;margin:15px 0 0}
+    .contact-head p{max-width:330px;color:#bac8bd;line-height:1.85;font-size:14px}
+    .contact-grid{display:grid;grid-template-columns:.7fr 1fr;gap:12%}
+    .contact-left{display:flex;flex-direction:column;justify-content:space-between;gap:35px}
+    .contact-left .contact-email{font-family:var(--serif);font-size:clamp(22px,2.45vw,36px);letter-spacing:-.045em;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:12px;display:inline-block;max-width:max-content;word-break:break-word}
+    .contact-left small{display:block;color:#a8b6ac;font-size:11px;line-height:2}
+    .social-list{display:flex;flex-wrap:wrap;gap:12px}
+    .social-list a{border:1px solid rgba(255,255,255,.28);padding:12px 15px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:background .2s}
+    .social-list a:hover{background:rgba(255,255,255,.12)}
+    .contact-form{display:grid;grid-template-columns:1fr 1fr;gap:29px 20px}
+    .form-field{display:flex;flex-direction:column;gap:12px}
+    .form-field.full{grid-column:1/-1}
+    .form-field label{color:#b6c6b8;font-size:10px;text-transform:uppercase;letter-spacing:.16em;font-weight:700}
+    .form-field input,.form-field select,.form-field textarea{width:100%;border:none;border-bottom:1px solid rgba(226,236,225,.4);background:transparent;color:#f6f5ed;border-radius:0;min-height:39px;padding:6px 0 14px;outline:none;font-size:14px;transition:border-color .25s}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:#f6f5ed}
+    .form-field input::placeholder,.form-field textarea::placeholder{color:#889e90;opacity:1}
+    .form-field option{color:#202626;background:#f5f3ed}
+    .form-field textarea{min-height:88px;resize:vertical}
+    .form-actions{grid-column:1/-1;display:flex;align-items:center;gap:25px;flex-wrap:wrap}
+    .form-actions button{border:0}
+    .form-actions span,.form-status{font-size:11px;color:#aebcb1;line-height:1.6}
+    .form-status{grid-column:1/-1;margin:0}
+    .site-footer{border-top:1px solid rgba(255,255,255,.19);margin-top:93px;padding-top:25px;display:flex;justify-content:space-between;gap:22px;align-items:end}
+    .site-footer .brand{color:#f5f5ee}
+    .site-footer small{color:#8f9f94;font-size:10px;line-height:1.9}
+    .footer-links{display:flex;flex-wrap:wrap;gap:18px;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+
+    /* Carefully staged scroll choreography. CSS is hidden only when JS observer is supported. */
+    body.motion-ready .reveal{opacity:0;transform:translate3d(0,35px,0);filter:blur(2px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1),filter .9s ease;transition-delay:var(--delay,0ms)}
+    body.motion-ready .reveal.is-visible{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+    body.motion-ready .image-reveal{clip-path:inset(7% 0 0 0);transform:translateY(28px);opacity:.78;transition:clip-path 1.15s cubic-bezier(.16,1,.3,1),transform 1.15s cubic-bezier(.16,1,.3,1),opacity 1s}
+    body.motion-ready .image-reveal.is-visible{clip-path:inset(0 0 0 0);transform:translateY(0);opacity:1}
+    body.motion-ready .hero-enter{opacity:0;transform:translateY(25px);animation:heroEnter 1s cubic-bezier(.15,.85,.3,1) forwards;animation-delay:var(--delay,0ms)}
+    @keyframes heroEnter{to{opacity:1;transform:translateY(0)}}
+
+    /* Local-only preview editor */
+    .edit-toggle{position:fixed;z-index:180;bottom:20px;left:20px;border:1px solid rgba(31,48,42,.23);background:rgba(250,248,241,.98);color:#192723;padding:12px 16px;box-shadow:0 9px 36px rgba(18,38,28,.18);font-size:11px;font-weight:700;letter-spacing:.04em;backdrop-filter:blur(10px)}
+    .edit-toggle:hover{background:white}
+    .edit-panel{position:fixed;z-index:179;bottom:71px;left:20px;width:min(365px,calc(100vw - 40px));background:#fbfaf5;box-shadow:0 20px 70px rgba(0,0,0,.25);color:var(--ink);padding:23px;border:1px solid #dddcd4}
+    .edit-panel[hidden]{display:none}
+    .edit-panel h3{font:400 26px/1.2 var(--serif);margin:0 0 12px}
+    .edit-panel p{font-size:12px;line-height:1.7;color:#526259}
+    .edit-panel .editor-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+    .edit-panel .editor-actions button{background:#e9ece5;border:1px solid #cbd2c9;padding:9px 10px;color:#273b32;font-size:11px}
+    .editor-mode [data-editable]{outline:1px dashed #a2bbae;outline-offset:5px;cursor:text}
+    .editor-mode [data-slot]{outline:3px dashed #b5d5bf!important;outline-offset:-6px;cursor:pointer}
+    .editor-mode [data-slot]::before{pointer-events:none}
+    .editor-mode [data-slot]:hover::after{background:rgba(7,40,35,.26)}
+    .editor-mode .media-play{pointer-events:none}
+    .editor-mode [data-slot] .slot-top,.editor-mode [data-slot] .slot-bottom{pointer-events:none}
+    .editor-mode [data-slot]::selection{background:transparent}
+    .editor-mode [data-editable]{pointer-events:auto!important}
+    .film-modal{position:fixed;inset:0;z-index:250;background:rgba(7,15,15,.92);display:none;align-items:center;justify-content:center;padding:70px 6vw 36px;backdrop-filter:blur(20px)}
+    .film-modal.open{display:flex}
+    .film-modal video{max-height:calc(100svh - 108px);max-width:min(100%,1200px);width:auto;box-shadow:0 15px 70px rgba(0,0,0,.35)}
+    .film-modal .no-video.has-video{max-width:1200px;max-height:100%;width:100%;display:flex;align-items:center;justify-content:center}
+    .film-modal-close{position:absolute;top:22px;right:32px;width:44px;height:44px;border:1px solid rgba(255,255,255,.6);background:none;color:white;font-size:26px;line-height:1}
+    .no-video{color:white;max-width:360px;text-align:center;font-size:14px;line-height:1.8}
+
+    @media(max-width:1100px){.nav-items{gap:17px}.brand{min-width:180px}.film-grid article:first-child .media-slot{height:435px}.film-grid article:nth-child(2) .media-slot,.film-grid article:nth-child(3) .media-slot{height:365px}.about-grid{gap:6%}.about-image{height:530px}.photo-grid{grid-template-rows:280px 205px 205px}}
+    @media(max-width:820px){
+      .nav-inner{height:67px}.nav-items{display:none;position:absolute;top:67px;left:0;right:0;background:#f5f3ed;padding:25px var(--gutter) 34px;color:var(--ink);flex-direction:column;align-items:start;gap:23px;border-bottom:1px solid var(--line)}.nav.menu-open .nav-items{display:flex}.nav-items a{font-size:13px}.nav-cta{margin-left:auto}.mobile-toggle{display:block}
+      .hero{min-height:660px}.hero-inner{padding-bottom:94px}.hero h1{font-size:clamp(61px,10.6vw,100px)}.hero-below{flex-direction:column;align-items:start;gap:19px}.hero-hint{display:none}.hero-aside{right:19px}.ticker-inner{min-height:69px}.ticker-tag{display:none}.ticker-words{justify-content:space-between;font-size:22px}
+      .featured{padding:94px 0}.featured-header{grid-template-columns:1fr;gap:8px}.featured .feature-note{justify-self:start}.feature-screen{height:410px}
+      .about{padding:90px 0}.about-grid{grid-template-columns:1fr}.about-image{height:530px;max-width:560px;margin-top:50px}.about-image .media-slot{left:0;right:32px}.about-image .caption-box{right:0}.film-grid{grid-template-columns:1fr 1fr}.film-grid article:first-child{grid-column:1/-1}.film-grid article:first-child .media-slot{height:390px}.film-grid article:nth-child(2),.film-grid article:nth-child(3){margin-top:0}.ugc-grid{grid-template-columns:repeat(2,1fr)}.ugc-grid .media-slot{height:420px}.ugc-grid article:nth-child(even){margin-top:0}.ugc-grid article:nth-child(3),.ugc-grid article:nth-child(4){margin-top:20px}
+      .head-row,.photo-head,.services-head{display:grid;grid-template-columns:1fr;gap:22px}.head-row .intro,.photo-head .intro,.services-head p{justify-self:start}.photo-grid{grid-template-rows:240px 180px 180px}
+      .service-item{grid-template-columns:37px 1fr 24px;gap:15px}.service-item p{grid-column:2;grid-row:2}.service-item .arrow{grid-column:3;grid-row:1}.contact-head{flex-direction:column;align-items:start;gap:22px;margin-bottom:55px}.contact-grid{grid-template-columns:1fr;gap:53px}.contact-left{gap:21px}.reviews-grid{gap:12px}.review{padding:25px}.site-footer{align-items:start}
+    }
+    @media(max-width:540px){
+      :root{--gutter:20px}.brand{min-width:0;gap:9px}.brand-signature{font-size:31px}.brand-detail{font-size:7px}.nav-cta{padding:11px 9px;font-size:9px;gap:9px}
+      .hero{min-height:650px;height:100svh}.hero-topline{top:108px;max-width:225px;line-height:1.7}.hero h1{font-size:clamp(60px,13.2vw,78px);line-height:1.08}.hero-inner{padding-bottom:108px}.hero-below{margin-top:27px;padding-top:23px}.hero-below p{font-size:12px;max-width:300px}.hero-actions{gap:10px}.light-button,.dark-button,.line-button{padding:0 13px;font-size:9px;gap:14px;min-height:46px}.hero-aside{display:none}.scrollcue{left:auto;right:26px;transform:none;bottom:22px}.hero-haze{background:linear-gradient(90deg,rgba(5,20,20,.65),rgba(5,20,20,.21)),linear-gradient(0deg,rgba(5,20,20,.57),transparent 70%)}
+      .ticker-inner{min-height:61px}.ticker-words{gap:10px;font-size:16px}.ticker-words b{font-size:9px}
+      .section,.featured,.film-section,.ugc-section,.photo-section,.services,.reviews{padding:78px 0}.section-title,.featured h2,.about h2,.contact-head h2{font-size:clamp(51px,12vw,69px)}.head-row{margin-bottom:29px}.featured-header{margin-bottom:29px}.feature-screen{height:310px}.stage-caption{flex-direction:column;gap:8px}.stage-caption h3{font-size:16px}
+      .about{padding:82px 0}.about p{font-size:13px}.about .lede{font-size:16px}.about-image{height:420px;margin-top:30px}.about-image .media-slot{bottom:40px}.about-image .caption-box{padding:17px;max-width:235px;bottom:0}.caption-box p{font-size:17px}.about-meta{gap:10px}
+      .film-grid{gap:11px}.film-grid article:first-child .media-slot{height:300px}.film-grid article:nth-child(2) .media-slot,.film-grid article:nth-child(3) .media-slot{height:275px}.film-grid .slot-bottom{bottom:16px;left:12px;right:10px}.film-grid .slot-bottom .slot-title{font-size:18px}.film-grid .slot-bottom .eyebrow{font-size:7px}.film-grid .media-play{width:45px;height:45px}.film-grid .card-foot h3{font-size:12px}.film-grid .card-foot span{font-size:8px}
+      .ugc-grid{gap:12px}.ugc-grid .media-slot{height:330px}.ugc-grid article:nth-child(3),.ugc-grid article:nth-child(4){margin-top:0}.ugc-grid .slot-bottom .slot-title{font-size:18px}.ugc-grid .slot-bottom .eyebrow{font-size:7px}.ugc-grid .media-play{width:44px;height:44px}.ugc-grid .card-foot h3{font-size:12px}.ugc-grid .card-foot span{font-size:8px}
+      .photo-grid{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px 190px 190px;gap:9px;margin-top:32px}.photo-grid .media-slot:nth-child(1){grid-column:1;grid-row:1/3}.photo-grid .media-slot:nth-child(2){grid-column:2;grid-row:1}.photo-grid .media-slot:nth-child(3){grid-column:2;grid-row:2}.photo-grid .media-slot:nth-child(4){grid-column:1;grid-row:3}.photo-grid .media-slot:nth-child(5){grid-column:2;grid-row:3}.photo-grid .media-slot:nth-child(6){grid-column:1/-1;grid-row:4}.photo-grid .slot-bottom{left:12px;right:8px;bottom:12px}.photo-grid .slot-bottom .slot-title{font-size:17px}.photo-grid .slot-bottom .eyebrow{font-size:7px}.photo-grid .slot-top{top:9px;left:9px}
+      .service-item{padding:25px 0}.service-item h3{font-size:28px}.service-item p{font-size:12px}.service-foot{align-items:start;flex-direction:column}
+      .reviews-grid{grid-template-columns:1fr}.review{min-height:230px;padding:29px}.review blockquote{font-size:24px}
+      .contact{padding:84px 0 48px}.contact-form{grid-template-columns:1fr;gap:25px}.form-field,.form-field.full,.form-actions,.form-status{grid-column:1}.contact-head h2{font-size:60px}.site-footer{flex-direction:column;gap:24px}.edit-toggle{left:12px;bottom:12px}.edit-panel{left:12px;bottom:63px;width:calc(100vw - 24px)}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}body.motion-ready .reveal,body.motion-ready .image-reveal{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}body.motion-ready .hero-enter{opacity:1!important;transform:none!important}}
+  </style>
+</head>
+<body id="top">
+  <div class="top-progress" aria-hidden="true"><i id="readingProgress"></i></div>
+  <header class="nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Dos Culturas Wander, back to top"><span class="brand-signature">dcw.</span><span class="brand-detail">DOS CULTURAS<br>WANDER</span></a>
+      <nav class="nav-items" id="navigation" aria-label="Main navigation"><a href="#featured">Featured</a><a href="#about">Studio</a><a href="#films">Films</a><a href="#ugc">UGC</a><a href="#photos">Photography</a><a href="#services">Services</a></nav>
+      <a class="nav-cta" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
+      <button class="mobile-toggle" type="button" id="menuButton" aria-expanded="false" aria-controls="navigation" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div id="heroFilm" class="hero-media has-media" data-slot="hero-film" data-media-type="video" aria-label="DCW cinematic hospitality showreel, replaceable in Edit preview mode.">
+        <div class="hero-art" aria-hidden="true"></div>
+        <video class="hero-film" id="heroVideo" playsinline muted loop autoplay preload="auto" src="media/dcw-opening-showreel.mp4" poster="media/hero-poster.jpg" aria-label="Dos Culturas Wander featured film"></video>
+        <div class="hero-haze" aria-hidden="true"></div><div class="hero-noise" aria-hidden="true"></div>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-topline eyebrow hero-enter" style="--delay:150ms">Independent creative studio / Hospitality &amp; travel</div>
+        <h1 id="hero-heading" class="serif hero-enter" style="--delay:290ms" data-editable="hero-title">Make them want<br><em>to be there.</em></h1>
+        <div class="hero-below hero-enter" style="--delay:480ms">
+          <p data-editable="hero-subtitle">Films, photography and creator-led stories that turn a first impression into a place worth discovering.</p>
+          <div class="hero-actions"><a href="#featured" class="light-button">Explore our work <span aria-hidden="true">↗</span></a><a href="#contact" class="line-button">Work with us <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+      <button class="replace-hero" id="replaceHero" type="button">+ Replace hero film</button>
+      <div class="hero-aside">DOS CULTURAS WANDER · EST. 2026</div>
+      <a class="scrollcue" href="#featured"><span>Scroll to discover</span><i class="line"></i></a>
+      <div class="hero-hint" id="heroHint" hidden>Replace this demo reel in Edit preview</div>
+    </section>
+
+    <div class="ticker" aria-label="Creative disciplines"><div class="container ticker-inner"><span class="ticker-tag">What we create</span><div class="ticker-words"><span>Moving image</span><b>✳</b><span>Photography</span><b>✳</b><span>Creator-led stories</span><b>✳</b><span>Experiences</span></div></div></div>
+
+    <section class="featured" id="featured" aria-labelledby="feature-title">
+      <div class="container"><div class="featured-header"><div class="reveal"><span class="eyebrow number-label">01 / First impressions</span><h2 class="serif" id="feature-title">Selected<br><em>collaboration.</em></h2></div><p class="feature-note reveal" style="--delay:120ms" data-editable="featured-summary">A selection from our recent property and travel films. This preview uses footage from our own projects, with final curation and copy to follow.</p></div>
+        <div class="stage-wrap"><div class="has-media feature-screen media-slot tint-ink image-reveal" data-slot="featured-video" data-media-type="video" aria-label="Featured DCW hospitality film"><video class="uploaded-media" src="media/film-casa-gloria.mp4" poster="media/film-casa-gloria.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">DCW / Selected hospitality film</span><span>Featured film / 01</span></div><button class="media-play" type="button" aria-label="Play featured collaboration film"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">Selected work / Hospitality</span><span class="slot-title" data-editable="feature-slot-title">A story worth staying for.</span></div></div><div class="feature-outline" aria-hidden="true"></div></div>
+        <div class="stage-caption reveal"><div><span class="chapter-index">Project 001 / selected DCW footage</span><h3 data-editable="featured-title">DCW / Hospitality film highlights</h3></div><p data-editable="featured-caption">A sample of our property, lifestyle and destination filming. Project descriptions and client information can be finalized before publishing.</p></div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title"><div class="container about-grid"><div><span class="eyebrow number-label reveal">02 / Behind the camera</span><h2 id="about-title" class="serif reveal">We see the<br><em>details first.</em></h2><p class="lede reveal" data-editable="about-lede">We're Dos Culturas Wander, a travel couple creating films and imagery shaped by how a place feels, not just how it looks.</p><p class="reveal" data-editable="about-copy">From hotels and boutique stays to restaurants, destinations and thoughtful brands, we create content that gives future guests and customers a clear sense of the experience. Every project is approached with its own story, atmosphere and purpose.</p><div class="about-meta reveal"><div><strong>Our perspective</strong>Travel-led visual storytelling</div><div><strong>Our deliverables</strong>Film · UGC · Photography</div><div><strong>Availability</strong>Philippines + travel projects</div></div></div><div class="about-image image-reveal"><div class="media-slot tint-sand" data-slot="about-photo" data-media-type="image" aria-label="Photo of the creative duo placeholder"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Your photo / The people behind DCW</span></div><div class="slot-bottom"><span class="eyebrow">Meet the creators</span><span class="slot-title" data-editable="about-image-title">Dos Culturas Wander</span></div></div><div class="vertical-tag">The people / The perspective</div><div class="caption-box"><span>Two perspectives, one vision</span><p data-editable="about-aside">Thoughtful storytelling for places people remember.</p></div></div></div></section>
+
+    <section class="section film-section" id="films" aria-labelledby="films-title"><div class="container"><div class="head-row"><div class="reveal"><span class="eyebrow number-label">03 / Film library</span><h2 class="serif section-title" id="films-title">Motion, with<br><em>intention.</em></h2></div><p class="intro reveal" data-editable="films-intro">Atmospheric property films, travel edits and short-form stories. Content made to hold attention and show the experience.</p></div><div class="film-grid">
+      <article class="media-card reveal"><div class="media-slot has-media tint-blue" data-slot="film-1" data-media-type="video"><video class="uploaded-media" src="media/film-property.mp4" poster="media/film-property.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Film / 01</span></div><button class="media-play" type="button" aria-label="Play hotel film"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">Film / Stay</span><span class="slot-title" data-editable="film-1-name">A place to stay.</span></div></div><div class="card-foot"><h3 data-editable="film-1-title">Interior / Property film</h3><span>01 / Film</span></div></article>
+      <article class="media-card reveal" style="--delay:120ms"><div class="media-slot has-media tint-rose" data-slot="film-2" data-media-type="video"><video class="uploaded-media" src="media/film-casa-gloria.mp4" poster="media/film-casa-gloria.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Film / 02</span></div><button class="media-play" type="button" aria-label="Play experience film"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">Film / Experience</span><span class="slot-title" data-editable="film-2-name">Casa Gloria, in motion.</span></div></div><div class="card-foot"><h3 data-editable="film-2-title">Casa Gloria / Property</h3><span>02 / Film</span></div></article>
+      <article class="media-card reveal" style="--delay:230ms"><div class="media-slot has-media tint-night" data-slot="film-3" data-media-type="video"><video class="uploaded-media" src="media/film-azure.mp4" poster="media/film-azure.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Film / 03</span></div><button class="media-play" type="button" aria-label="Play travel film"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">Film / Destination</span><span class="slot-title" data-editable="film-3-name">The resort experience.</span></div></div><div class="card-foot"><h3 data-editable="film-3-title">Resort / Lifestyle film</h3><span>03 / Film</span></div></article>
+    </div></div></section>
+
+    <section class="ugc-section" id="ugc" aria-labelledby="ugc-title"><div class="container"><div class="head-row"><div class="reveal"><span class="eyebrow number-label">04 / Creator-led content</span><h2 id="ugc-title" class="serif section-title">Real moments.<br><em>Well told.</em></h2></div><p class="intro reveal" data-editable="ugc-intro">Natural, personal and informative. Short-form content for the way people actually discover properties, restaurants and products.</p></div><div class="ugc-grid">
+      <article class="media-card reveal"><div class="media-slot has-media tint-sand" data-slot="ugc-1" data-media-type="video"><video class="uploaded-media" src="media/ugc-casa-gloria.mp4" poster="media/ugc-casa-gloria.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Vertical / 01</span></div><button class="media-play" type="button" aria-label="Play room tour UGC"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">UGC / Stay</span><span class="slot-title" data-editable="ugc-1-name">Casa Gloria.</span></div></div><div class="card-foot"><h3 data-editable="ugc-1-title">Casa Gloria / Tour</h3><span>9:16</span></div></article>
+      <article class="media-card reveal" style="--delay:100ms"><div class="media-slot has-media tint-blue" data-slot="ugc-2" data-media-type="video"><video class="uploaded-media" src="media/ugc-azure-room.mp4" poster="media/ugc-azure-room.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Vertical / 02</span></div><button class="media-play" type="button" aria-label="Play voiceover UGC"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">UGC / Review</span><span class="slot-title" data-editable="ugc-2-name">Inside the stay.</span></div></div><div class="card-foot"><h3 data-editable="ugc-2-title">Room details / UGC</h3><span>9:16</span></div></article>
+      <article class="media-card reveal" style="--delay:200ms"><div class="media-slot tint-rose" data-slot="ugc-3" data-media-type="video"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Vertical / 03</span></div><button class="media-play" type="button" aria-label="Play restaurant UGC"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">UGC / Dining</span><span class="slot-title" data-editable="ugc-3-name">Restaurant film goes here.</span></div></div><div class="card-foot"><h3 data-editable="ugc-3-title">Restaurant / Future work</h3><span>9:16</span></div></article>
+      <article class="media-card reveal" style="--delay:300ms"><div class="media-slot has-media tint-ink" data-slot="ugc-4" data-media-type="video"><video class="uploaded-media" src="media/ugc-azure-experience.mp4" poster="media/ugc-azure-experience.jpg" playsinline muted loop preload="metadata"></video><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Vertical / 04</span></div><button class="media-play" type="button" aria-label="Play brand UGC"><svg viewBox="0 0 24 24"><path d="M7 4.2 20 12 7 19.8Z"/></svg></button><div class="slot-bottom"><span class="eyebrow">UGC / Brand</span><span class="slot-title" data-editable="ugc-4-name">Around the resort.</span></div></div><div class="card-foot"><h3 data-editable="ugc-4-title">Resort / Lifestyle</h3><span>9:16</span></div></article>
+    </div></div></section>
+
+    <section class="photo-section" id="photos" aria-labelledby="photos-title"><div class="container"><div class="photo-head"><div class="reveal"><span class="eyebrow number-label">05 / Photography</span><h2 id="photos-title" class="serif section-title">A closer<br><em>look.</em></h2></div><p class="intro reveal" data-editable="photos-intro">Spaces, architecture, atmosphere and the small things guests notice. A visual collection with room for your best photographs.</p></div><div class="photo-grid">
+      <div class="has-media media-slot tint-rose image-reveal" data-slot="photo-1" data-media-type="image"><img class="uploaded-media" src="media/photo-1.jpg" alt="Still from Dos Culturas Wander hospitality video" loading="lazy"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Photo / 01</span></div><div class="slot-bottom"><span class="eyebrow">Interior</span><span class="slot-title" data-editable="photo-1-title">The room.</span></div></div>
+      <div class="has-media media-slot tint-ink image-reveal" data-slot="photo-2" data-media-type="image"><img class="uploaded-media" src="media/photo-2.jpg" alt="Still from Dos Culturas Wander hospitality video" loading="lazy"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Photo / 02</span></div><div class="slot-bottom"><span class="eyebrow">Architecture</span><span class="slot-title" data-editable="photo-2-title">The setting.</span></div></div>
+      <div class="has-media media-slot tint-blue image-reveal" data-slot="photo-3" data-media-type="image"><img class="uploaded-media" src="media/photo-3.jpg" alt="Still from Dos Culturas Wander hospitality video" loading="lazy"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Photo / 03</span></div><div class="slot-bottom"><span class="eyebrow">Amenities</span><span class="slot-title" data-editable="photo-3-title">The experience.</span></div></div>
+      <div class="has-media media-slot tint-sand image-reveal" data-slot="photo-4" data-media-type="image"><img class="uploaded-media" src="media/photo-4.jpg" alt="Still from Dos Culturas Wander hospitality video" loading="lazy"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Photo / 04</span></div><div class="slot-bottom"><span class="eyebrow">Details</span><span class="slot-title" data-editable="photo-4-title">The little things.</span></div></div>
+      <div class="has-media media-slot tint-night image-reveal" data-slot="photo-5" data-media-type="image"><img class="uploaded-media" src="media/photo-5.jpg" alt="Still from Dos Culturas Wander hospitality video" loading="lazy"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Photo / 05</span></div><div class="slot-bottom"><span class="eyebrow">Lifestyle</span><span class="slot-title" data-editable="photo-5-title">The moment.</span></div></div>
+      <div class="has-media media-slot tint-rose image-reveal" data-slot="photo-6" data-media-type="image"><img class="uploaded-media" src="media/photo-6.jpg" alt="Still from Dos Culturas Wander hospitality video" loading="lazy"><div class="media-architecture"></div><div class="slot-top"><span class="placeholder-marker">Photo / 06</span></div><div class="slot-bottom"><span class="eyebrow">Food &amp; places</span><span class="slot-title" data-editable="photo-6-title">Beyond the stay.</span></div></div>
+    </div></div></section>
+
+    <section class="services" id="services" aria-labelledby="services-title"><div class="container"><div class="services-head"><div class="reveal"><span class="eyebrow number-label">06 / Collaborations</span><h2 id="services-title" class="serif section-title">Where we<br><em>can create.</em></h2></div><p class="reveal" data-editable="services-intro">Not one-size-fits-all. We tailor the scope and format to the property, experience or brand. Paid content production, creator collaborations and custom projects are welcome.</p></div><div class="service-list">
+      <div class="service-item reveal"><span class="num">01</span><h3>Hotels &amp; resorts</h3><p>Brand films, room and amenity content, campaign assets and guest-perspective storytelling.</p><span class="arrow" aria-hidden="true">↗</span></div>
+      <div class="service-item reveal"><span class="num">02</span><h3>Airbnbs &amp; villas</h3><p>Property walkthroughs, listing visuals, lifestyle content and launch-ready photo libraries.</p><span class="arrow" aria-hidden="true">↗</span></div>
+      <div class="service-item reveal"><span class="num">03</span><h3>Restaurants &amp; cafés</h3><p>Food, interiors, service, atmosphere and experience-led short-form content.</p><span class="arrow" aria-hidden="true">↗</span></div>
+      <div class="service-item reveal"><span class="num">04</span><h3>Destinations &amp; travel</h3><p>Tourism experiences, activities, agencies, transport and destination-led storytelling.</p><span class="arrow" aria-hidden="true">↗</span></div>
+      <div class="service-item reveal"><span class="num">05</span><h3>Brands &amp; paid UGC</h3><p>Travel and lifestyle products, natural brand integration, product demos and authentic creator content.</p><span class="arrow" aria-hidden="true">↗</span></div>
+    </div><div class="service-foot reveal"><p>Need something different? We can discuss a custom scope for your team.</p><a href="#contact" class="dark-button">Let's talk details <span aria-hidden="true">↗</span></a></div></div></section>
+
+    <section class="reviews" id="reviews" aria-labelledby="reviews-title"><div class="container"><div class="head-row"><div class="reveal"><span class="eyebrow number-label">07 / Client notes</span><h2 id="reviews-title" class="serif section-title">Words from<br><em>our clients.</em></h2></div><p class="intro reveal">This space is reserved for real feedback from completed collaborations. Replace these placeholders with approved client reviews.</p></div><div class="reviews-grid">
+      <article class="review reveal"><span class="quote" aria-hidden="true">“</span><blockquote data-editable="review-1">Your first approved testimonial goes here. A specific sentence about the collaboration is stronger than a generic compliment.</blockquote><footer><span data-editable="review-1-name">Client name / Property</span><span>Review 01</span></footer></article>
+      <article class="review reveal" style="--delay:100ms"><span class="quote" aria-hidden="true">“</span><blockquote data-editable="review-2">A second verified client review will go here. We'll add the client's actual words once you send them.</blockquote><footer><span data-editable="review-2-name">Client name / Brand</span><span>Review 02</span></footer></article>
+    </div></div></section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container"><div class="contact-head"><div class="reveal"><span class="eyebrow number-label">08 / Start something</span><h2 id="contact-title" class="serif">Your next story<br><em>starts here.</em></h2></div><p class="reveal">Have a space, a stay or a brand you want people to notice? Tell us the project and we'll find the right way to tell its story.</p></div>
+      <div class="contact-grid"><div class="contact-left reveal"><div><span class="eyebrow" style="color:#9daf9f">Direct contact</span><p><a class="contact-email" href="mailto:dosculturaswander@gmail.com">dosculturaswander@gmail.com</a></p><small>For collaborations, hotels, hospitality partners and brands.</small></div><div><span class="eyebrow" style="color:#9daf9f">Find us online</span><div class="social-list" style="margin-top:17px"><a href="https://www.instagram.com/dosculturaswander/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/@dosculturaswander" target="_blank" rel="noopener noreferrer">TikTok ↗</a><a href="https://linktr.ee/dosculturaswander" target="_blank" rel="noopener noreferrer">Linktree ↗</a></div></div></div>
+      <form class="contact-form reveal" id="inquiryForm" method="POST" action="https://formspree.io/f/mljjkrva" aria-label="Project inquiry form"><div class="form-field"><label for="form-name">Your name *</label><input id="form-name" name="name" type="text" placeholder="Your name" autocomplete="name" required></div><div class="form-field"><label for="form-email">Email *</label><input id="form-email" name="email" type="email" placeholder="Your email" autocomplete="email" required></div><div class="form-field full"><label for="form-brand">Company / Property</label><input id="form-brand" name="company" type="text" placeholder="Who are we creating for?"></div><div class="form-field full"><label for="form-type">I'm interested in *</label><select id="form-type" name="interest" required><option value="" selected disabled>Select your collaboration type</option><option>Hotel / Boutique Hotel</option><option>Resort / Villa</option><option>Airbnb / Staycation / Property</option><option>Restaurant / Café / Food &amp; Beverage</option><option>Travel Experiences / Activities</option><option>Tourism Board / Destination</option><option>Airline / Travel Agency</option><option>Lifestyle / Travel Brand</option><option>Paid UGC / Brand Collaboration</option><option>Photography Only</option><option>Video / Reels Only</option><option>Custom / Not Sure Yet</option></select></div><div class="form-field full"><label for="form-message">Project details *</label><textarea id="form-message" name="message" placeholder="Tell us what you're planning, where, and when." required></textarea></div><input type="hidden" name="_subject" value="New inquiry — DCW Cinematic Portfolio"><div class="form-actions"><button class="light-button" type="submit">Send inquiry <span aria-hidden="true">↗</span></button><span>Or reach out by email and social media.</span></div><p class="form-status" id="formStatus" role="status" aria-live="polite"></p></form></div>
+      <footer class="site-footer"><div><a class="brand" href="#top"><span class="brand-signature">dcw.</span><span class="brand-detail">DOS CULTURAS<br>WANDER</span></a><small>© <span id="copyrightYear">2026</span> Dos Culturas Wander. Created for real projects.</small></div><div class="footer-links"><a href="#films">Films</a><a href="#ugc">UGC</a><a href="#photos">Photos</a><a href="#top">Back to top ↑</a></div></footer>
+    </div></section>
+  </main>
+
+  <button type="button" class="edit-toggle" id="editToggle" aria-expanded="false" aria-controls="editPanel">✎ Edit preview</button>
+  <aside class="edit-panel" id="editPanel" hidden><h3>Make it yours.</h3><p>Click any media space to upload a photo or video. Click dashed-outline text to edit copy. Your edits are saved only inside this browser, not to the HTML file.</p><p><strong>Hero tip:</strong> Upload a horizontal 16:9 or 21:9 film with a strong opening. It will autoplay silently and loop as a cinematic first impression.</p><div class="editor-actions"><button id="resetCopy" type="button">Reset text</button><button id="resetMedia" type="button">Reset media</button><button id="closeEdit" type="button">Close</button></div></aside>
+  <input id="mediaPicker" class="sr-only" type="file" accept="image/*,video/*" aria-label="Upload a photo or video">
+  <div class="film-modal" id="filmModal" role="dialog" aria-label="Portfolio video player" aria-modal="true" aria-hidden="true"><button class="film-modal-close" id="closeModal" type="button" aria-label="Close video">×</button><div id="modalBody" class="no-video">Choose a video in Edit preview to replace this sample.</div></div>
+
+  <script>
+  (() => {
+    const body=document.body;
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nav=document.getElementById('siteNav'),menu=document.getElementById('menuButton'),links=document.getElementById('navigation');
+    const progress=document.getElementById('readingProgress'),heroFilm=document.getElementById('heroFilm'),heroVideo=document.getElementById('heroVideo');
+    let ticking=false;
+    function updateScroll(){
+      const y=window.scrollY||0;
+      nav.classList.toggle('is-scrolled',y>40);
+      const scrollable=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+      progress.style.transform=`scaleX(${Math.min(1,y/scrollable)})`;
+      if(!reduced){
+        const heroY=Math.max(0,Math.min(y,innerHeight));
+        heroFilm.style.setProperty('--hero-scale',String(1.05+heroY/innerHeight*.06));
+        document.documentElement.style.setProperty('--hero-scroll',String(heroY));
+      }
+      ticking=false;
+    }
+    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateScroll);ticking=true}},{passive:true});
+    window.addEventListener('resize',updateScroll,{passive:true});updateScroll();
+    menu.addEventListener('click',()=>{const open=nav.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
+    document.getElementById('copyrightYear').textContent=new Date().getFullYear();
+    if(!reduced && 'IntersectionObserver' in window){
+      document.body.classList.add('motion-ready');
+      const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:0.09,rootMargin:'0px 0px -6% 0px'});
+      document.querySelectorAll('.reveal,.image-reveal').forEach(el=>observer.observe(el));
+    }
+
+    // Local, intentionally unpublished editing. This concept uses separate storage from version one.
+    const toggle=document.getElementById('editToggle'),panel=document.getElementById('editPanel'),picker=document.getElementById('mediaPicker');
+    const copyKey='dcw-cinematic-copy-v1',dbName='dcw-cinematic-media';
+    let editing=false,activeSlot=null;
+    let copyEdits={};try{copyEdits=JSON.parse(localStorage.getItem(copyKey)||'{}')||{}}catch(e){copyEdits={}}
+    document.querySelectorAll('[data-editable]').forEach(el=>{
+      const key=el.dataset.editable;
+      if(Object.prototype.hasOwnProperty.call(copyEdits,key))el.innerHTML=copyEdits[key];
+      el.addEventListener('blur',()=>{if(!editing)return;copyEdits[key]=el.innerHTML;try{localStorage.setItem(copyKey,JSON.stringify(copyEdits))}catch(e){}});
+    });
+    function setEdit(on){editing=on;body.classList.toggle('editor-mode',on);panel.hidden=!on;toggle.textContent=on?'✓ Finish editing':'✎ Edit preview';toggle.setAttribute('aria-expanded',String(on));document.querySelectorAll('[data-editable]').forEach(el=>{el.contentEditable=on?'true':'false'});}
+    toggle.addEventListener('click',()=>setEdit(!editing));document.getElementById('closeEdit').addEventListener('click',()=>setEdit(false));
+    document.getElementById('replaceHero').addEventListener('click',()=>{if(!editing)return;activeSlot=heroFilm;picker.accept='video/*';picker.click()});
+    function openDB(){return new Promise((resolve,reject)=>{if(!window.indexedDB){reject(Error('Browser storage not supported'));return}const request=indexedDB.open(dbName,1);request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains('assets'))request.result.createObjectStore('assets')};request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error)});}
+    async function dbWrite(key,value){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction('assets','readwrite');tx.objectStore('assets').put(value,key);tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
+    async function dbRead(key){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction('assets','readonly');const q=tx.objectStore('assets').get(key);q.onsuccess=()=>{db.close();resolve(q.result)};q.onerror=()=>{db.close();reject(q.error)}})}
+    async function dbClear(){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction('assets','readwrite');tx.objectStore('assets').clear();tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
+    const slots=[...document.querySelectorAll('[data-slot]')];
+    const mediaUrls=new Map();
+    function mountFile(slot,file){
+      const key=slot.dataset.slot;
+      if(mediaUrls.has(key))URL.revokeObjectURL(mediaUrls.get(key));
+      const url=URL.createObjectURL(file);mediaUrls.set(key,url);
+      if(key==='hero-film'){
+        heroVideo.src=url;heroVideo.load();heroVideo.muted=true;heroVideo.loop=true;heroVideo.playsInline=true;heroVideo.setAttribute('autoplay','');
+        if(!reduced)heroVideo.play().catch(()=>{});
+        heroFilm.classList.add('has-media');document.getElementById('heroHint').hidden=true;return;
+      }
+      slot.querySelectorAll('.uploaded-media').forEach(n=>n.remove());
+      const el=document.createElement(file.type.startsWith('video/')?'video':'img');el.className='uploaded-media';
+      if(el.tagName==='VIDEO'){el.preload='metadata';el.playsInline=true;el.muted=true;el.loop=true;el.controls=false;}
+      else{el.alt='User-provided portfolio photograph';el.loading='lazy';}
+      el.src=url;slot.insertBefore(el,slot.firstChild);slot.classList.add('has-media');
+    }
+    // Video button opens a real player. Card video can preview silently on hover.
+    const modal=document.getElementById('filmModal'),modalBody=document.getElementById('modalBody');
+    function openVideo(slot){
+      if(editing)return;
+      const vid=slot.querySelector('video.uploaded-media');modalBody.replaceChildren();modalBody.classList.toggle('has-video',!!vid);
+      if(vid){const player=document.createElement('video');player.src=vid.src;player.controls=true;player.autoplay=true;player.playsInline=true;player.style.maxWidth='100%';player.style.maxHeight='calc(100svh - 108px)';modalBody.appendChild(player);player.play().catch(()=>{});} else {modalBody.textContent='This is a video placeholder. Use Edit preview to add a real video.';}
+      modal.classList.add('open');modal.setAttribute('aria-hidden','false');body.classList.add('modal-open');document.getElementById('closeModal').focus();
+    }
+    function closeVideo(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');body.classList.remove('modal-open');const video=modalBody.querySelector('video');if(video)video.pause();modalBody.classList.remove('has-video');modalBody.replaceChildren('Choose a video in Edit preview to replace this sample.');}
+    document.getElementById('closeModal').addEventListener('click',closeVideo);
+    modal.addEventListener('click',e=>{if(e.target===modal)closeVideo()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeVideo()});
+    slots.forEach(async slot=>{
+      slot.addEventListener('click',e=>{
+        if(editing){if(e.target.closest('[data-editable]'))return;activeSlot=slot;picker.accept=slot.dataset.mediaType==='image'?'image/*':'video/*';picker.click();return}
+        if(slot.dataset.mediaType==='video' && slot.dataset.slot!=='hero-film' && (e.target.closest('.media-play')))openVideo(slot);
+      });
+      if(slot.dataset.mediaType==='video' && slot.dataset.slot!=='hero-film'){
+        slot.addEventListener('mouseenter',()=>{if(editing||reduced)return;const video=slot.querySelector('video.uploaded-media');if(video){video.currentTime=0;video.play().catch(()=>{})}});
+        slot.addEventListener('mouseleave',()=>{const video=slot.querySelector('video.uploaded-media');if(video){video.pause();video.currentTime=0}});
+      }
+      try{const file=await dbRead(slot.dataset.slot);if(file)mountFile(slot,file)}catch(e){}
+    });
+    picker.addEventListener('change',async()=>{
+      const file=picker.files&&picker.files[0];if(!file||!activeSlot)return;
+      const expected=activeSlot.dataset.mediaType;if(!(expected==='image'?file.type.startsWith('image/'):file.type.startsWith('video/'))){alert('This slot expects a '+expected+'.');picker.value='';return}
+      if(file.size>180*1024*1024){alert('The browser editor can accept videos under 180 MB. Larger production files should be optimized before upload or added to the published site directly.');picker.value='';return}
+      const slot=activeSlot;mountFile(slot,file);
+      try{await dbWrite(slot.dataset.slot,file)}catch(e){alert('The file is visible in this preview but this browser could not save it for a future visit.')}
+      picker.value='';activeSlot=null;
+    });
+    document.getElementById('resetCopy').addEventListener('click',()=>{if(confirm('Remove locally edited text in this version?')){localStorage.removeItem(copyKey);location.reload()}});
+    document.getElementById('resetMedia').addEventListener('click',async()=>{if(!confirm('Clear local uploads and return to the original DCW sample videos?'))return;try{await dbClear();location.reload()}catch(e){alert('Unable to clear browser media storage.')}});
+    const form=document.getElementById('inquiryForm'),status=document.getElementById('formStatus');
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();const button=form.querySelector('button[type="submit"]');button.disabled=true;status.textContent='Sending your inquiry…';
+      try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});if(!response.ok)throw Error('Submission failed');status.textContent='Thanks — your inquiry has been submitted.';form.reset()}
+      catch(err){status.textContent='We could not confirm the submission. Please email dosculturaswander@gmail.com directly.'}
+      finally{button.disabled=false}
+    });
+  })();
+  </script>
+</body>
+</html>
