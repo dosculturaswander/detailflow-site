@@ -1,0 +1,33 @@
+
+/* Dos Culturas Wander | Hospitality video collections */
+#hospitalityVideos{max-width:1140px;margin:0 auto}
+.dcw-video-subtabs{display:flex;justify-content:center;gap:clamp(30px,5vw,72px);margin:-17px auto 58px}
+.dcw-video-subtab{position:relative;background:transparent;border:0;border-bottom:1px solid transparent;padding:13px 3px 14px;font:400 12px/1.5 'Jost',sans-serif;letter-spacing:.2em;color:#928d86;cursor:pointer;transition:color .25s}
+.dcw-video-subtab.is-active{border-bottom-color:#393630;color:#35322c}
+.dcw-video-subtab:focus-visible,.dcw-film-card:focus-visible{outline:2px solid #90857a;outline-offset:4px}
+.dcw-video-group[hidden]{display:none}
+.dcw-video-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin:0 0 24px;border-bottom:1px solid #dfdcd5;padding-bottom:12px}
+.dcw-video-group-head span{font:500 10px/1.5 'Jost',sans-serif;letter-spacing:.18em;color:#89837b}
+.dcw-video-group-head p{margin:0;color:#817b73;font-size:12px}
+.dcw-montage-grid{columns:3;column-gap:18px}
+.dcw-film-card{position:relative;display:block;overflow:hidden;width:100%;padding:0;margin:0 0 18px;border:0;background:#ded8cf;aspect-ratio:16/9;text-align:left;break-inside:avoid;color:white;cursor:pointer}
+.dcw-film-card[hidden]{display:none}
+.dcw-film-card.is-portrait{aspect-ratio:9/16}
+.dcw-film-image{position:absolute;inset:0;background:linear-gradient(145deg,#a59c8d,#625f57);background-position:center;background-size:cover;transition:transform .6s ease}
+.dcw-film-card:hover .dcw-film-image{transform:scale(1.045)}
+.dcw-film-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:15px;background:linear-gradient(0deg,rgba(15,17,17,.68),transparent 48%,rgba(15,17,17,.12));transition:background .25s}
+.dcw-film-play{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(0,0,0,.16);font-size:18px;padding-left:3px}
+.dcw-film-title{position:absolute;left:20px;bottom:18px;font:400 12px/1.4 'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.dcw-video-empty{min-height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#f3f0eb;text-align:center;padding:32px}
+.dcw-video-empty span{font-size:10px;letter-spacing:.22em;color:#9a948a}
+.dcw-video-empty h3{margin:9px 0 0;font:400 clamp(25px,3vw,37px)/1.2 'Jost',sans-serif;letter-spacing:-.04em;color:#3b3933}
+.dcw-video-empty p{margin:0;color:#817c74;font-size:13px}
+.dcw-video-lightbox[hidden]{display:none}
+.dcw-video-lightbox{position:fixed;inset:0;z-index:140;background:rgba(17,17,16,.96);display:flex;align-items:center;justify-content:center;padding:70px 28px 36px}
+.dcw-video-lightbox-close{position:absolute;right:clamp(24px,5vw,74px);top:25px;color:white;background:none;border:0;font-size:12px;letter-spacing:.15em;cursor:pointer}
+.dcw-video-frame{max-width:min(1080px,95vw);max-height:82vh;display:flex;flex-direction:column;align-items:center;gap:12px}
+.dcw-video-frame video{display:block;max-width:100%;max-height:76vh;background:#050505;object-fit:contain}
+.dcw-video-current-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#bcbab3}
+@media(max-width:850px){.dcw-montage-grid{columns:2}.dcw-video-group-head{display:block}.dcw-video-group-head p{margin-top:8px}}
+@media(max-width:560px){.dcw-montage-grid{columns:1}.dcw-video-subtabs{margin:-16px auto 38px}.dcw-film-card{margin-bottom:13px}.dcw-video-empty{min-height:230px}.dcw-video-lightbox{padding:66px 13px 32px}}
+
