@@ -1,0 +1,26 @@
+/* Hospitality photography, natural-ratio editorial masonry */
+#hospitalityPhotos .dcw-photo-overline{display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;margin:-11px 0 23px;border-bottom:1px solid #dfdcd6;padding:0 0 15px;color:#8d867e;font:500 10px/1.5 'Jost',Arial,sans-serif;letter-spacing:.17em}
+#hospitalityPhotos .dcw-photo-grid{columns:3;column-gap:15px;text-align:left}
+#hospitalityPhotos .dcw-photo-card{display:block;position:relative;overflow:hidden;break-inside:avoid;width:100%;height:auto;margin:0 0 15px;border:0;padding:0;background:#eeece6;color:#fff;text-align:left;cursor:zoom-in}
+#hospitalityPhotos .dcw-photo-card[hidden]{display:none}
+#hospitalityPhotos .dcw-photo-card img{display:block;width:100%;height:auto;transform:scale(1.001);transition:transform .65s cubic-bezier(.2,.65,.2,1),filter .5s}
+#hospitalityPhotos .dcw-photo-card:hover img{transform:scale(1.045);filter:brightness(.85)}
+#hospitalityPhotos .dcw-photo-card:focus-visible{outline:2px solid #786e61;outline-offset:4px}
+#hospitalityPhotos .dcw-photo-view{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:24px 18px 16px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;background:linear-gradient(transparent,rgba(10,10,8,.52));font:500 10px/1.5 'Jost',Arial,sans-serif;letter-spacing:.14em}
+#hospitalityPhotos .dcw-photo-card:hover .dcw-photo-view,#hospitalityPhotos .dcw-photo-card:focus-visible .dcw-photo-view{opacity:1;transform:translateY(0)}
+#hospitalityPhotos .dcw-photo-view span{font-size:18px;font-weight:300}
+#hospitalityPhotos #dcwPhotosEmpty[hidden]{display:none}
+.dcw-photo-lightbox[hidden]{display:none}
+.dcw-photo-lightbox{position:fixed;inset:0;z-index:160;background:rgba(16,17,16,.97);color:#f6f3eb;display:flex;align-items:center;justify-content:center;padding:66px clamp(45px,7vw,125px) 35px}
+.dcw-photo-lightbox figure{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;max-width:100%;max-height:100%;margin:0;min-width:0}
+.dcw-photo-lightbox figure img{display:block;max-width:100%;max-height:calc(100vh - 152px);width:auto;height:auto;object-fit:contain}
+.dcw-photo-lightbox figcaption{width:100%;display:flex;justify-content:space-between;gap:25px;font:400 11px/1.5 'Jost',Arial,sans-serif;letter-spacing:.11em;color:#d6d2cc;text-align:left}
+.dcw-photo-lightbox .dcw-photo-number{white-space:nowrap;color:#9c9893}
+.dcw-photo-lightbox button{position:absolute;border:0;color:#eeeae5;background:none;cursor:pointer;font-family:'Jost',Arial,sans-serif}
+.dcw-photo-lightbox .dcw-photo-close{top:25px;right:clamp(23px,4vw,64px);font-size:11px;letter-spacing:.15em}
+.dcw-photo-lightbox .dcw-photo-prev,.dcw-photo-lightbox .dcw-photo-next{top:50%;font-size:28px;padding:12px;transform:translateY(-50%)}
+.dcw-photo-lightbox .dcw-photo-prev{left:clamp(8px,2.7vw,42px)}
+.dcw-photo-lightbox .dcw-photo-next{right:clamp(8px,2.7vw,42px)}
+.dcw-photo-lightbox button:focus-visible{outline:1px solid #fff;outline-offset:4px}
+@media(max-width:850px){#hospitalityPhotos .dcw-photo-grid{columns:2}}
+@media(max-width:540px){#hospitalityPhotos .dcw-photo-grid{column-gap:8px;columns:2}#hospitalityPhotos .dcw-photo-card{margin-bottom:8px}#hospitalityPhotos .dcw-photo-overline{font-size:9px;letter-spacing:.09em}#hospitalityPhotos .dcw-photo-view{display:none}.dcw-photo-lightbox{padding:62px 43px 25px}.dcw-photo-lightbox figure img{max-height:calc(100vh - 135px)}.dcw-photo-lightbox .dcw-photo-prev{left:1px}.dcw-photo-lightbox .dcw-photo-next{right:1px}.dcw-photo-lightbox figcaption{font-size:10px;letter-spacing:.04em}}
