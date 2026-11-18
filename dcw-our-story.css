@@ -1,0 +1,12 @@
+/* Our Story — editorial image, pull quote and two-column narrative */
+.about-story .story-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:clamp(24px,2.5vw,34px);align-items:start}
+.about-story .story-left{min-width:0}
+.about-story .story-photo{width:100%;aspect-ratio:360/423;min-height:0}
+.about-story .story-quote{margin:64px 0 12px 18px;max-width:332px;color:#34332f}
+.about-story .story-quote:before{content:"";display:block;height:1px;width:32px;background:#a9a49c;margin-bottom:21px}
+.about-story .story-quote p{margin:0 0 22px;font:300 clamp(24px,2.15vw,30px)/1.18 'Jost',Arial,sans-serif;letter-spacing:-.045em}
+.about-story .story-quote span{display:block;font:500 10px/1.5 'Jost',Arial,sans-serif;letter-spacing:.17em}
+.about-story .story-text{columns:2;column-gap:clamp(22px,2.4vw,34px);font-size:13px;line-height:1.88;color:#4d4d46}
+.about-story .story-text p{margin:0 0 17px;break-inside:avoid}
+@media(max-width:880px){.about-story .story-grid{grid-template-columns:minmax(0,1fr);gap:34px}.about-story .story-left{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px;align-items:center}.about-story .story-quote{margin:0}.about-story .story-text{columns:2}}
+@media(max-width:600px){.about-story .story-left{display:block}.about-story .story-photo{max-width:100%;aspect-ratio:360/423}.about-story .story-quote{margin:36px 0 10px}.about-story .story-text{columns:1;font-size:14px;line-height:1.85}}

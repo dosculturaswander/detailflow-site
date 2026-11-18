@@ -1,0 +1,33 @@
+name: Update DCW Our Story in live portfolio
+on:
+  push:
+    branches:
+      - dcw-cinematic-portfolio
+    paths:
+      - dcw-our-story.html
+      - dcw-our-story.css
+      - .github/scripts/apply_dcw_story.py
+      - .github/workflows/update-dcw-story.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch-portfolio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out DCW portfolio branch
+        uses: actions/checkout@v4
+        with:
+          ref: dcw-cinematic-portfolio
+          persist-credentials: true
+      - name: Update the story content and its layout
+        run: python3 .github/scripts/apply_dcw_story.py
+      - name: Commit updated website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish corrected Our Story section"
+            git push origin HEAD:dcw-cinematic-portfolio
+          fi
