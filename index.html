@@ -247,8 +247,8 @@ button,a,[role="button"]{-webkit-tap-highlight-color:transparent;touch-action:ma
   .dcw-photo-viewer figcaption{font-size:9px}
 }
 @media(hover:none) and (pointer:coarse){
-  /* Category titles should never be invisible when Safari changes its viewport during a swipe. */
-  .cat h3{opacity:1!important;transform:none!important;will-change:auto}
+  /* Restore the scroll-controlled title fade on touchscreens. */
+  .cat h3{will-change:opacity,transform}
   .dcw-film-card:hover img,.dcw-photo-tile:hover img{transform:none}
   #hospitalityPhotos .dcw-photo-tile-hint{display:none}
 }
